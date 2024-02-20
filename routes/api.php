@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FitnessController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/fitness-solution',[FitnessController::class,'solution'])->name('api.fitness.solution');
