@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/fitness-solution',[FitnessController::class,'solution'])->name('api.fitness.solution');
+Route::post('/v1/fitness-solution',[FitnessController::class,'solution'])->name('api.v1.fitness.solution');
