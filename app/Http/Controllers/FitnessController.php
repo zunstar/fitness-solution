@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Services\Fitness\PersonalTrainer;
+use App\Http\Requests\SolutionPostRequest;
 
 class FitnessController extends Controller
 {
-    public function solution(Request $request, PersonalTrainer $trainer) : JsonResponse
+    public function solution(SolutionPostRequest $request, PersonalTrainer $trainer) : JsonResponse
     {
-        $solutionTypes = $request->input('solutionType', []);
+        $solutionTypes = $request->input('solutionTypes', []);
         $tags = $request->input('tags', []);
 
         $solution = $trainer->getSolution($solutionTypes, $tags);
