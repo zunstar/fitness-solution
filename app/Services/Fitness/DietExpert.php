@@ -9,12 +9,12 @@ class DietExpert implements SolutionInterface
     public function recommendSolution(array $tags): array{
         $solutions = [
             [
-                'name' => 'Intermittent Fasting',
-                'tags' => ['enough_time', 'strong_will'],
+                "solution" => "Intermittent Fasting",
+                "tags" => ["enough_time", "strong_will"],
             ],
             [
-                'name' => 'LCHF',
-                'tags' => ['enough_money'],
+                "solution" => "LCHF",
+                "tags" => ["enough_money"],
             ],
         ];
 

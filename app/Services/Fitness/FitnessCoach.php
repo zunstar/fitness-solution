@@ -9,19 +9,19 @@ class FitnessCoach implements SolutionInterface
     public function recommendSolution(array $tags): array{
         $solutions = [
             [
-                'name' => 'Crossfit',
+                'solution' => 'Crossfit',
                 'tags' => ['enough_money', 'strong_will'],
             ],
             [
-                'name' => 'Cardio Exercise',
+                'solution' => 'Cardio Exercise',
                 'tags' => ['strong_will'],
             ],
             [
-                'name' => 'Strength',
+                'solution' => 'Strength',
                 'tags' => ['strong_will','enough_time'],
             ],
             [
-                'name' => 'Spinning',
+                'solution' => 'Spinning',
                 'tags' => ['enough_money'],
             ],
         ];

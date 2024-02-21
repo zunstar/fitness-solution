@@ -2,21 +2,29 @@
 
 namespace App\Services\Fitness;
 
-class PersonalTrainer{
+class PersonalTrainer {
 
-    protected $solution = [];
+    protected $solutionProviders;
 
-    public function __construct(array $solutionProviders)
-    {
-        $this->solution = $solutionProviders;
+    public function __construct(array $solutionProviders) {
+        $this->solutionProviders = $solutionProviders;
     }
 
-    public function getSolution(string $solutionType, array $tags): array
-    {
-        if (isset($this->solution[$solutionType])) {
-            return $this->solution[$solutionType]->recommendSolution($tags);
+    public function getSolution($solutionTypes, $tags) {
+        $solutions = [];
+        
+        if (empty($solutionTypes)) {
+            $solutionTypes = array_keys($this->solutionProviders);
+        }
+        foreach ($solutionTypes as $type) {
+            if (isset($this->solutionProviders[$type])) {
+                $provider = $this->solutionProviders[$type];
+                $providerSolutions = $provider->recommendSolution($tags);
+                
+                $solutions = array_merge($solutions, $providerSolutions);
+            }
         }
 
-        throw new \Exception("Unsupported solution type: {$solutionType}");
+        return $solutions;
     }
 }
