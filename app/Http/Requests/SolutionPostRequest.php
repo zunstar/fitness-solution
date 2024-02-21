@@ -28,7 +28,7 @@ class SolutionPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'solutionTypes' => 'required|array',
+            'solutionTypes' => 'sometimes|array',
             'solutionTypes.*' => 'string|in:DIET,FITNESS',
             'tags' => 'required|array',
             'tags.*' => 'required|string'
@@ -38,7 +38,6 @@ class SolutionPostRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tags.solutionTypes' => '솔루션 타입은 필수입니다.',
             'solutionTypes.array' => '배열 타입이여야 합니다.',
             'solutionTypes.*.string' => '배열의 문자열 값이 아닙니다.',
             'solutionTypes.*.in' => 'DIET 또는 FITNESS 의 값이여야 합니다.',
