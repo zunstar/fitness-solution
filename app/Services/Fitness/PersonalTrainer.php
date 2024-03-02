@@ -10,7 +10,7 @@ class PersonalTrainer {
         $this->solutionProviders = $solutionProviders;
     }
 
-    public function getSolution($solutionTypes, $tags) {
+    public function getSolution(array $solutionTypes, array $tags) : array {
         $solutions = [];
         
         if (empty($solutionTypes)) {
