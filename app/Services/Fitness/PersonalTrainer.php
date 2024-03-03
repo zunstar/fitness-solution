@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services\Fitness;
+use InvalidArgumentException;
 
 class PersonalTrainer {
 
