@@ -3,9 +3,17 @@
 namespace App\Services\Fitness;
 
 use App\Interfaces\Fitness\SolutionInterface;
+use App\Helpers\Fitness\SolutionRecommender;
 
 class FitnessCoach implements SolutionInterface
 {
+    protected $solutionRecommender;
+
+    public function __construct(SolutionRecommender $solutionRecommender)
+    {
+        $this->solutionRecommender = $solutionRecommender;
+    }
+
     public function recommendSolution(array $tags): array{
         $solutions = [
             [
@@ -26,10 +34,7 @@ class FitnessCoach implements SolutionInterface
             ],
         ];
 
-        $recommendedSolutions = array_filter($solutions, function ($solution) use ($tags) {
-            return count(array_intersect($solution['tags'], $tags)) > 0;
-        });
+        return $this->solutionRecommender->recommend($solutions, $tags);
 
-        return array_values($recommendedSolutions);
     }
 }

@@ -3,9 +3,17 @@
 namespace App\Services\Fitness;
 
 use App\Interfaces\Fitness\SolutionInterface;
+use App\Helpers\Fitness\SolutionRecommender;
 
 class DietExpert implements SolutionInterface
 {
+    protected $solutionRecommender;
+
+    public function __construct(SolutionRecommender $solutionRecommender)
+    {
+        $this->solutionRecommender = $solutionRecommender;
+    }
+
     public function recommendSolution(array $tags): array{
         $solutions = [
             [
@@ -17,11 +25,8 @@ class DietExpert implements SolutionInterface
                 "tags" => ["enough_money"],
             ],
         ];
+        
+        return $this->solutionRecommender->recommend($solutions, $tags);
 
-        $recommendedSolutions = array_filter($solutions, function ($solution) use ($tags) {
-            return count(array_intersect($solution['tags'], $tags)) > 0;
-        });
-
-        return array_values($recommendedSolutions);
     }
 }

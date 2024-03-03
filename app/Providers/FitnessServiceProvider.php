@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Helpers\Fitness\SolutionRecommender;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Fitness\PersonalTrainer;
 use App\Services\Fitness\DietExpert;
@@ -14,8 +15,13 @@ class FitnessServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+
+        $this->app->singleton(SolutionRecommender::class, function ($app) {
+            return new SolutionRecommender();
+        });
+
         $this->app->when(PersonalTrainer::class)
-          ->needs('$solutionProviders')
+          ->needs('$solutionServices')
           ->give(function () {
               return [
                   'DIET' => $this->app->make(DietExpert::class),
